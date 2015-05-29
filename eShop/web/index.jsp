@@ -7,6 +7,9 @@
             <div id="indexLeftColumn">
                 <div id="welcomeText">
                     <p>[ welcome text ]</p>
+                    <!-- test to access context parameters -->
+                    categoryImagePath :  ${initParam.categoryImagePath}
+                    productImagePath : ${initParam.productImagePath}
                 </div>
             </div>
 
