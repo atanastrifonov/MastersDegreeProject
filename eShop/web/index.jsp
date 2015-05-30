@@ -9,8 +9,6 @@
     SELECT * FROM category
 </sql:query>
             <div id="indexLeftColumn">
-                <c:forEach var="category" items="${categories.rows}">
-                </c:forEach>
                 <div id="welcomeText">
                     <p>[ welcome text ]</p>
                     <!-- test to access context parameters -->
@@ -20,25 +18,16 @@
             </div>
 
             <div id="indexRightColumn">
-                <div class="categoryBox">
-                    <a href="#">
-                        <span class="categoryLabelText">dairy</span>
-                    </a>
-                </div>
-                <div class="categoryBox">
-                    <a href="#">
-                        <span class="categoryLabelText">meats</span>
-                    </a>
-                </div>
-                <div class="categoryBox">
-                    <a href="#">
-                        <span class="categoryLabelText">bakery</span>
-                    </a>
-                </div>
-                <div class="categoryBox">
-                    <a href="#">
-                        <span class="categoryLabelText">fruit & veg</span>
-                    </a>
-                </div>
+                <c:forEach var="category" items="${categories.rows}">
+                    <div class="categoryBox">
+                        <a href="category?${category.id}">
+
+                            <span class="categoryLabelText">${category.name}</span>
+
+                            <img src="${initParam.categoryImagePath}${category.name}.jpg"
+                                 alt="${category.name}">
+                        </a>
+                    </div>
+                </c:forEach>
             </div>
 
