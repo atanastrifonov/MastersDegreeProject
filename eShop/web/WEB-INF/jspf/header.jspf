@@ -1,12 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/eshop.css">
-        <title>Eshop application</title>
+        <link rel="shortcut icon" href="img/favicon.ico">
+
+        <title>The Eshop app</title>
     </head>
     <body>
         <div id="main">
@@ -27,9 +29,9 @@
 
                 </div>
 
-                <a href="#">
-                    <img src="#" id="logo" alt="Eshop logo">
+                <a href="index.jsp">
+                    <img src="img/logo.png" id="logo" alt="Eshop logo">
                 </a>
 
-                <img src="#" id="logoText" alt="eshop image">
+                <img src="img/logoText.png" id="logoText" alt="eshop app">
             </div>
