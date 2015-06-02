@@ -5,25 +5,10 @@
 --%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-
-<sql:query var="categories" dataSource="jdbc/eShop">
-    SELECT * FROM category
-</sql:query>
-
-<sql:query var="selectedCategory" dataSource="jdbc/eShop">
-    SELECT name FROM category WHERE id = ?
-    <sql:param value="${pageContext.request.queryString}"/>
-</sql:query>
-
-<sql:query var="categoryProducts" dataSource="jdbc/eShop">
-    SELECT * FROM product WHERE category_id = ?
-    <sql:param value="${pageContext.request.queryString}"/>
-</sql:query>
 
             <div id="categoryLeftColumn">
 
-                <c:forEach var="category" items="${categories.rows}">
+                <c:forEach var="category" items="${categories}">
 
                     <c:choose>
                         <c:when test="${category.id == pageContext.request.queryString}">
@@ -48,11 +33,13 @@
 
             <div id="categoryRightColumn">
 
-                <p id="categoryTitle">${selectedCategory.rows[0].name}</p>
+                <p id="categoryTitle">    
+                    <span style="background-color: #f5eabe; padding: 7px;">${selectedCategory.name}</span>
+                </p>
 
                 <table id="productTable">
 
-                    <c:forEach var="product" items="${categoryProducts.rows}" varStatus="iter">
+                    <c:forEach var="product" items="${categoryProducts}" varStatus="iter">
 
                         <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
                             <td>

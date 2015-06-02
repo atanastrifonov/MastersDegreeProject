@@ -5,9 +5,9 @@
     Created on : 2015-3-28, 16:17:21
     Author     : user
 --%>
-<sql:query var="categories" dataSource="jdbc/eShop">
+<%--<sql:query var="categories" dataSource="jdbc/eShop">
     SELECT * FROM category
-</sql:query>
+</sql:query>--%>
             <div id="indexLeftColumn">
                 <div id="welcomeText">
                     <p>[ welcome text ]</p>
@@ -18,7 +18,7 @@
             </div>
 
             <div id="indexRightColumn">
-                <c:forEach var="category" items="${categories.rows}">
+                <c:forEach var="category" items="${categories}">
                     <div class="categoryBox">
                         <a href="category?${category.id}">
 
