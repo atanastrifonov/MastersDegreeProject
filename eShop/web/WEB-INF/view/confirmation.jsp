@@ -1,9 +1,3 @@
-<%-- 
-    Document   : confirmation
-    Created on : 2015-4-18, 13:49:47
-    Author     : user
---%>
-
             <div id="singleColumn">
 
                 <p id="confirmationText">
@@ -29,6 +23,6 @@
                             <th style="padding:10px">[ customer details ]</th>
                         </tr>
                     </table>
+
                 </div>
             </div>
-

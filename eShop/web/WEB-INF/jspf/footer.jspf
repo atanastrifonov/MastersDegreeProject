@@ -2,11 +2,11 @@
                 <br>
                 <hr id="footerDivider">
                 <p id="footerText" class="reallySmallText">
-                    <a href="#">Privacy Policy</a>
+                    <a href="<c:url value='#'/>">Privacy Policy</a>
                     &nbsp;&nbsp;::&nbsp;&nbsp;
-                    <a href="#">Contact</a>
+                    <a href="<c:url value='#'/>">Contact</a>
                     &nbsp;&nbsp;&copy;&nbsp;&nbsp;
-                    The eshop app</p>
+                    2010 the affable bean</p>
             </div>
         </div>
     </body>
