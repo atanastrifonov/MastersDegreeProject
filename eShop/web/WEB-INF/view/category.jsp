@@ -1,71 +1,63 @@
-<%-- 
-    Document   : category
-    Created on : 2015-4-18, 13:49:04
-    Author     : user
---%>
+<div id="categoryLeftColumn">
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <c:forEach var="category" items="${categories}">
 
-            <div id="categoryLeftColumn">
+        <c:choose>
+            <c:when test="${category.name == selectedCategory.name}">
+                <div class="categoryButton" id="selectedCategory">
+                    <span class="categoryText">
+                        ${category.name}
+                    </span>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <a href="category?${category.id}" class="categoryButton">
+                    <span class="categoryText">
+                        ${category.name}
+                    </span>
+                </a>
+            </c:otherwise>
+        </c:choose>
 
-                <c:forEach var="category" items="${categories}">
+    </c:forEach>
 
-                    <c:choose>
-                        <c:when test="${category.id == pageContext.request.queryString}">
-                            <div class="categoryButton" id="selectedCategory">
-                                <span class="categoryText">
-                                    ${category.name}
-                                </span>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="category?${category.id}" class="categoryButton">
-                                <span class="categoryText">
-                                    ${category.name}
-                                </span>
-                            </a>
-                        </c:otherwise>
-                    </c:choose>
+</div>
 
-                </c:forEach>
+<div id="categoryRightColumn">
 
-            </div>
+    <p id="categoryTitle">${selectedCategory.name}</p>
 
-            <div id="categoryRightColumn">
+    <table id="productTable">
 
-                <p id="categoryTitle">    
-                    <span style="background-color: #f5eabe; padding: 7px;">${selectedCategory.name}</span>
-                </p>
+        <c:forEach var="product" items="${categoryProducts}" varStatus="iter">
 
-                <table id="productTable">
+            <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
+                <td>
+                    <img src="${initParam.productImagePath}${product.name}.png"
+                         alt="${product.name}">
+                </td>
 
-                    <c:forEach var="product" items="${categoryProducts}" varStatus="iter">
+                <td>
+                    ${product.name}
+                    <br>
+                    <span class="smallText">${product.description}</span>
+                </td>
 
-                        <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
-                            <td>
-                                <img src="${initParam.productImagePath}${product.name}.png"
-                                    alt="image of ${product.name}">
-                            </td>
-                            <td>
-                                ${product.name}
-                                <br>
-                                <span class="smallText">${product.description}</span>
-                            </td>
-                            <td>
-                                &euro; ${product.price} / unit
-                            </td>
-                            <td>
-                                <form action="addToCart" method="post">
-                                    <input type="hidden"
-                                           name="productId"
-                                           value="${product.id}">
-                                    <input type="submit"
-                                           value="add to cart">
-                                </form>
-                            </td>
-                        </tr>
+                <td>&euro; ${product.price}</td>
 
-                    </c:forEach>
+                <td>
+                    <form action="<c:url value='addToCart' />" method="post">
+                        <input type="hidden"
+                               name="productId"
+                               value="${product.id}">
+                        <input type="submit"
+                               name="submit"
+                               value="add to cart">
+                    </form>
+                </td>
+            </tr>
 
-                </table>
-            </div>
+        </c:forEach>
+
+    </table>
+</div>

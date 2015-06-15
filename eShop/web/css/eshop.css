@@ -1,11 +1,3 @@
-/* 
-    Document   : eshop
-    Created on : 2015-4-18, 13:51:46
-    Author     : user
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
 /* html tags */
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -19,8 +11,6 @@ hr {
     border: 0;
     background-color: #333;
     height: 1px;
-    margin: 0 25px;
-    width: 300px;
 }
 
 table {
@@ -40,6 +30,12 @@ a:hover { text-decoration: none }
 a:visited { color: inherit }
 
 img { border: none }
+
+input, select { margin: 5px }
+
+li { margin: 10px 0 }
+
+label { line-height: 30px }
 
 
 /* general styles */
@@ -102,9 +98,24 @@ img { border: none }
     float: right;
 }
 
+#cart {
+    position: absolute;
+    margin: 5px 0 0 2px;
+}
+
+.horizontalMargin {
+    margin-left: 28px;
+    margin-right: 5px
+}
+
+#viewCart {
+    text-align: left;
+    width: 210px;
+}
+
 .headerWidget {
     width: 194px;
-    margin: 20px 2px;
+    margin: 20px 0;
     font-size: small;
     float: right;
     line-height: 25px;
@@ -119,6 +130,11 @@ img { border: none }
 }
 
 #footerText { margin-top: 5px }
+
+#footerDivider {
+    margin: 0 25px;
+    width: 300px;
+}
 
 
 /* index page styles */
@@ -236,24 +252,39 @@ img { border: none }
 
 /* checkout page styles */
 #checkoutTable {
-    width: 360px;
+    width: 405px;
+    padding: 10px;
     background-color: #f5eabe;
     float: left;
-    height: 280px;
 }
 
-#infoBox {
-    width: 300px;
-    padding-left: 30px;
-    float: left;
+#checkoutTable td {
+    vertical-align: top;
+    text-align: right;
+    margin: 5px;
 }
+
+.inputField { width: 190px }
+
+#infoBox { padding: 10px 25px 0 460px }
 
 #priceBox {
     padding: 10px;
-    margin: 10px 0;
-    height: 128px;
+    border: 1px solid #c3e3e0;
     background-color: #c3e3e0;
 }
+
+#priceBox td {
+    text-align: right;
+    padding: 5px;
+}
+
+.checkoutPriceColumn {
+    width: 80px;
+    font-weight: bold;
+}
+
+.total { border-top: 1px solid #444 }
 
 
 /* confirmation page styles */
