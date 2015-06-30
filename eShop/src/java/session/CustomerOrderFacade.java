@@ -36,7 +36,9 @@ public class CustomerOrderFacade {
     }
 
     public CustomerOrder find(Object id) {
-        return em.find(CustomerOrder.class, id);
+        CustomerOrder order = em.find(CustomerOrder.class, id);
+        em.refresh(order);
+        return order;
     }
 
     public List<CustomerOrder> findAll() {
