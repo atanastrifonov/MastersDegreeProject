@@ -1,3 +1,8 @@
+<%-- Set session-scoped variable to track the view user is coming from.
+     This is used by the language mechanism in the Controller so that
+     users view the same page when switching between English and Bulgarian. --%>
+<c:set var='view' value='/checkout' scope='session' />
+
 <script src="js/jquery.validate.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -29,12 +34,12 @@
 
 <div id="singleColumn">
 
-    <h2>checkout</h2>
+    <h2><fmt:message key="checkout"/></h2>
 
-    <p>In order to purchase the items in your shopping cart, please provide us with the following information:</p>
+    <p><fmt:message key="checkoutText"/></p>
 
     <c:if test="${!empty orderFailureFlag}">
-        <p class="error">We were unable to process your order. Please try again!</p>
+        <p class="error"><fmt:message key="orderFailureError"/></p>
     </c:if>
 
     <form id="checkoutForm" action="<c:url value='purchase'/>" method="post">
@@ -54,7 +59,7 @@
                         <br><span class="indent"><strong>phone</strong> (e.g., 222333444)</span>
                       </c:if>
                       <c:if test="${!empty addressError}">
-                        <br><span class="indent"><strong>address</strong> (e.g., Kichuka)</span>
+                        <br><span class="indent"><strong>address</strong> (e.g., Kichuka 56)</span>
                       </c:if>
                       <c:if test="${!empty cityRegionError}">
                         <br><span class="indent"><strong>city region</strong> (e.g., 2)</span>
@@ -68,7 +73,7 @@
             </tr>
           </c:if>
             <tr>
-                <td><label for="name">name:</label></td>
+                <td><label for="name"><fmt:message key="customerName"/>:</label></td>
                 <td class="inputField">
                     <input type="text"
                            size="31"
@@ -79,7 +84,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="email">email:</label></td>
+                <td><label for="email"><fmt:message key="email"/>:</label></td>
                 <td class="inputField">
                     <input type="text"
                            size="31"
@@ -90,7 +95,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="phone">phone:</label></td>
+                <td><label for="phone"><fmt:message key="phone"/>:</label></td>
                 <td class="inputField">
                     <input type="text"
                            size="31"
@@ -101,7 +106,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="address">address:</label></td>
+                <td><label for="address"><fmt:message key="address"/>:</label></td>
                 <td class="inputField">
                     <input type="text"
                            size="31"
@@ -111,7 +116,7 @@
                            value="${param.address}">
 
                     <br>
-                    prague
+                    <fmt:message key="prague"/>
                     <select name="cityRegion">
                       <c:forEach begin="1" end="10" var="regionNumber">
                         <option value="${regionNumber}"
@@ -121,7 +126,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label for="creditcard">credit card number:</label></td>
+                <td><label for="creditcard"><fmt:message key="creditCard"/>:</label></td>
                 <td class="inputField">
                     <input type="text"
                            size="31"
@@ -133,7 +138,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="submit" value="submit purchase">
+                    <input type="submit" value="<fmt:message key='submit'/>">
                 </td>
             </tr>
         </table>
@@ -142,26 +147,27 @@
     <div id="infoBox">
 
         <ul>
-            <li>Next-day delivery is guaranteed</li>
-            <li>A &euro; ${initParam.deliverySurcharge}
-                delivery surcharge is applied to all purchase orders</li>
+            <li><fmt:message key="nextDayGuarantee"/></li>
+            <li><fmt:message key="deliveryFee1"/>
+                <fmt:formatNumber type="currency" currencySymbol="&euro; " value="${initParam.deliverySurcharge}"/>
+                <fmt:message key="deliveryFee2"/></li>
         </ul>
 
         <table id="priceBox">
             <tr>
-                <td>subtotal:</td>
+                <td><fmt:message key="subtotal"/>:</td>
                 <td class="checkoutPriceColumn">
-                    &euro; ${cart.subtotal}</td>
+                    <fmt:formatNumber type="currency" currencySymbol="&euro; " value="${cart.subtotal}"/></td>
             </tr>
             <tr>
-                <td>delivery surcharge:</td>
+                <td><fmt:message key="surcharge"/>:</td>
                 <td class="checkoutPriceColumn">
-                    &euro; ${initParam.deliverySurcharge}</td>
+                    <fmt:formatNumber type="currency" currencySymbol="&euro; " value="${initParam.deliverySurcharge}"/></td>
             </tr>
             <tr>
-                <td class="total">total:</td>
+                <td class="total"><fmt:message key="total"/>:</td>
                 <td class="total checkoutPriceColumn">
-                    &euro; ${cart.total}</td>
+                    <fmt:formatNumber type="currency" currencySymbol="&euro; " value="${cart.total}"/></td>
             </tr>
         </table>
     </div>
