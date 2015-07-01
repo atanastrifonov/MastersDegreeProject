@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author gamebred
+ * @author user
  */
 @WebFilter(servletNames = {"Controller"}    )
 public class SessionTimeoutFilter implements Filter {

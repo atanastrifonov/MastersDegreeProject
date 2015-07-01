@@ -6,62 +6,39 @@
 package session;
 
 import entity.CustomerOrder;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 /**
  *
  * @author user
  */
 @Stateless
-public class CustomerOrderFacade {
+public class CustomerOrderFacade extends AbstractFacade<CustomerOrder> {
     @PersistenceContext(unitName = "eShopPU")
     private EntityManager em;
 
-    public void create(CustomerOrder customerOrder) {
-        em.persist(customerOrder);
+    protected EntityManager getEntityManager() {
+        return em;
     }
 
-    public void edit(CustomerOrder customerOrder) {
-        em.merge(customerOrder);
+    public CustomerOrderFacade() {
+        super(CustomerOrder.class);
     }
 
-    public void remove(CustomerOrder customerOrder) {
-        em.remove(em.merge(customerOrder));
-    }
-
+    // overridden - refresh method called to retrieve order id from database
     public CustomerOrder find(Object id) {
         CustomerOrder order = em.find(CustomerOrder.class, id);
         em.refresh(order);
         return order;
     }
 
-    public List<CustomerOrder> findAll() {
-        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(CustomerOrder.class));
-        return em.createQuery(cq).getResultList();
-    }
-
-    public List<CustomerOrder> findRange(int[] range) {
-        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(CustomerOrder.class));
-        Query q = em.createQuery(cq);
-        q.setMaxResults(range[1] - range[0]);
-        q.setFirstResult(range[0]);
-        return q.getResultList();
-    }
-
-    public int count() {
-        CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-        Root<CustomerOrder> rt = cq.from(CustomerOrder.class);
-        cq.select(em.getCriteriaBuilder().count(rt));
-        Query q = em.createQuery(cq);
-        return ((Long) q.getSingleResult()).intValue();
+    // manually created
+    // in this implementation, there is only one order per customer
+    // the data model however allows for multiple orders per customer
+    public CustomerOrder findByCustomer(Object customer) {
+        return (CustomerOrder) em.createNamedQuery("CustomerOrder.findByCustomer").setParameter("customer", customer).getSingleResult();
     }
 
 }
