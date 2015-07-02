@@ -107,7 +107,7 @@ public class AdminServlet extends HttpServlet {
         if (userPath.equals("/admin/logout")) {
             session = request.getSession();
             session.invalidate();   // terminate session
-            response.sendRedirect("/AffableBean/admin/");
+            response.sendRedirect("/eShop/admin/");
             return;
         }
 
