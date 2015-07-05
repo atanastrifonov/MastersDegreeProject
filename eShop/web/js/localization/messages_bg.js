@@ -1,17 +1,17 @@
 /*
  * Translated default messages for the jQuery validation plugin.
- * Locale: CS
+ * Language: CS
  */
 jQuery.extend(jQuery.validator.messages, {
-	required: "Tento údaj je povinný.",
+	required: "Това поле е задължително.",
 	remote: "Prosím, opravte tento údaj.",
-	email: "Prosím, zadejte platný e-mail.",
+	email: "Моля, въведете валиден е-мейл адрес",
 	url: "Prosím, zadejte platné URL.",
 	date: "Prosím, zadejte platné datum.",
 	dateISO: "Prosím, zadejte platné datum (ISO).",
-	number: "Prosím, zadejte číslo.",
+	number: "Моля въведете валиден номер",
 	digits: "Prosím, zadávejte pouze číslice.",
-	creditcard: "Prosím, zadejte číslo kreditní karty.",
+	creditcard: "Моля, въведете валиден номер на карта!",
 	equalTo: "Prosím, zadejte znovu stejnou hodnotu.",
 	accept: "Prosím, zadejte soubor se správnou příponou.",
 	maxlength: jQuery.validator.format("Prosím, zadejte nejvíce {0} znaků."),

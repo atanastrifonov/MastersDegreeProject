@@ -5,6 +5,22 @@
 
 <script src="js/jquery.validate.js" type="text/javascript"></script>
 
+<%-- Add Bulgarian field validation messages if 'bg' is the chosen locale --%>
+<c:choose>
+  <%-- When 'language' session attribute hasn't been set, check browser's preferred locale --%>
+  <c:when test="${empty language}">
+    <c:if test="${pageContext.request.locale.language eq 'bg'}">
+      <script src="js/localization/messages_bg.js" type="text/javascript"></script>
+    </c:if>
+  </c:when>
+  <%-- Otherwise, check 'language' session attribute --%>
+  <c:otherwise>
+    <c:if test="${sessionScope['javax.servlet.jsp.jstl.fmt.locale.session'] eq 'bg'}">
+      <script src="js/localization/messages_bg.js" type="text/javascript"></script>
+    </c:if>
+  </c:otherwise>
+</c:choose>
+
 <script type="text/javascript">
 
     $(document).ready(function(){
@@ -47,25 +63,25 @@
           <c:if test="${!empty validationErrorFlag}">
             <tr>
                 <td colspan="2" style="text-align:left">
-                    <span class="error smallText">Please provide valid entries for the following field(s):
+                    <span class="error smallText"><fmt:message key="validationErrorMessage"/>
 
                       <c:if test="${!empty nameError}">
-                        <br><span class="indent"><strong>name</strong> (e.g., Bilbo Baggins)</span>
+                        <br><span class="indent"><fmt:message key="nameError"/></span>
                       </c:if>
                       <c:if test="${!empty emailError}">
-                        <br><span class="indent"><strong>email</strong> (e.g., b.baggins@hobbit.com)</span>
+                        <br><span class="indent"><fmt:message key="emailError"/></span>
                       </c:if>
                       <c:if test="${!empty phoneError}">
-                        <br><span class="indent"><strong>phone</strong> (e.g., 222333444)</span>
+                        <br><span class="indent"><fmt:message key="phoneError"/></span>
                       </c:if>
                       <c:if test="${!empty addressError}">
-                        <br><span class="indent"><strong>address</strong> (e.g., Kichuka 56)</span>
+                        <br><span class="indent"><fmt:message key="addressError"/></span>
                       </c:if>
                       <c:if test="${!empty cityRegionError}">
-                        <br><span class="indent"><strong>city region</strong> (e.g., 2)</span>
+                        <br><span class="indent"><fmt:message key="cityRegionError"/></span>
                       </c:if>
                       <c:if test="${!empty ccNumberError}">
-                        <br><span class="indent"><strong>credit card</strong> (e.g., 1111222233334444)</span>
+                        <br><span class="indent"><fmt:message key="ccNumberError"/></span>
                       </c:if>
 
                     </span>
@@ -133,6 +149,7 @@
                            maxlength="19"
                            id="creditcard"
                            name="creditcard"
+                           class="creditcard"
                            value="${param.creditcard}">
                 </td>
             </tr>

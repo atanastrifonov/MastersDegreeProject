@@ -1,10 +1,15 @@
-<%-- 
-    Document   : login
-    Created on : 2015-7-2, 10:18:40
-    Author     : gamebred
+<%--
+ * Copyright (c) 2010, Oracle and/or its affiliates. All rights reserved.
+ *
+ * You may not modify, use, reproduce, or distribute this software
+ * except in compliance with the terms of the license at:
+ * http://developer.sun.com/berkeley_license.html
+
+ * author: tgiunipero
 --%>
 
-<form action="j_security_check" method=post>
+
+<form action="<c:url value='j_security_check'/>" method=post>
     <div id="loginBox">
         <p><strong>username:</strong>
             <input type="text" size="20" name="j_username"></p>

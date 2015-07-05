@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    
+    <!--The @WebServlet annotation is used in the ControllerServlet instead of
+    the <servlet> and <servlet-mapping> entries below-->
+<!--<servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>controller.ControllerServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/category</url-pattern>
+        <url-pattern>/addToCart</url-pattern>
+        <url-pattern>/viewCart</url-pattern>
+        <url-pattern>/updateCart</url-pattern>
+        <url-pattern>/checkout</url-pattern>
+        <url-pattern>/purchase</url-pattern>
+        <url-pattern>/chooseLanguage</url-pattern>
+    </servlet-mapping>-->
+
     <context-param>
         <description>The relative path to product images</description>
         <param-name>productImagePath</param-name>
@@ -24,11 +44,27 @@
             30
         </session-timeout>
     </session-config>
+
+    <!--Not required for Servlet 3.0 - index.jsp is default-->
+    <!--<welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>-->
+
+    <!--This is only needed for testing the datasource (TestDataSource.jsp)-->
+    <!--<resource-ref>
+        <description>jdbc:mysql://localhost:3306/eShop</description>
+        <res-ref-name>jdbc/eShop</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>-->
+
     <jsp-config>
         <jsp-property-group>
             <description>JSP configuration for the store front</description>
             <url-pattern>/index.jsp</url-pattern>
             <url-pattern>/WEB-INF/view/*</url-pattern>
+            <url-pattern>/WEB-INF/jspf/error/*</url-pattern>
             <include-prelude>/WEB-INF/jspf/header.jspf</include-prelude>
             <include-coda>/WEB-INF/jspf/footer.jspf</include-coda>
         </jsp-property-group>
@@ -41,13 +77,31 @@
             <include-coda>/admin/jspf/footer.jspf</include-coda>
         </jsp-property-group>
     </jsp-config>
-    <!--    <resource-ref>
-        <description>Connects to database for eShop application</description>
-        <res-ref-name>jdbc/eShop</res-ref-name>
-        <res-type>javax.sql.ConnectionPoolDataSource</res-type>
-        <res-auth>Container</res-auth>
-        <res-sharing-scope>Shareable</res-sharing-scope>
-    </resource-ref>-->
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/jspf/error/403.jspf</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jspf/error/404.jspf</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jspf/error/500.jspf</location>
+    </error-page>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/admin/login.jsp</form-login-page>
+            <form-error-page>/admin/error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+
     <security-constraint>
         <display-name>Admin</display-name>
         <web-resource-collection>
@@ -60,14 +114,19 @@
             <role-name>eshopAdminRole</role-name>
         </auth-constraint>
     </security-constraint>
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <realm-name>file</realm-name>
-        <form-login-config>
-            <form-login-page>/admin/login.jsp</form-login-page>
-            <form-error-page>/admin/error.jsp</form-error-page>
-        </form-login-config>
-    </login-config>
+    <security-constraint>
+        <display-name>Checkout</display-name>
+        <web-resource-collection>
+            <web-resource-name>Checkout</web-resource-name>
+            <url-pattern>/checkout</url-pattern>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
     <security-role>
         <description/>
         <role-name>eshopAdminRole</role-name>

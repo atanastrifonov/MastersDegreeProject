@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
+import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.servlet.http.HttpSession;
@@ -31,6 +34,10 @@ import session.OrderManager;
                            "/admin/customerRecord",
                            "/admin/orderRecord",
                            "/admin/logout"})
+@ServletSecurity(
+    @HttpConstraint(transportGuarantee = TransportGuarantee.CONFIDENTIAL,
+                    rolesAllowed = {"eshopAdminRole"})
+)
 public class AdminServlet extends HttpServlet {
 
     @EJB
