@@ -1,0 +1,14 @@
+.bubble {
+    font-weight: bold;
+    background-color: #f5eabe;
+    padding: 5px;
+    color: inherit;
+    display: inline;
+    border-radius: 4px;
+}
+
+.headerWidget {
+    width: 194px;
+    font-size: small;
+    line-height: 25px;
+}
