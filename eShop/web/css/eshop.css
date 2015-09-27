@@ -12,3 +12,12 @@
     font-size: small;
     line-height: 25px;
 }
+
+.lightBlue { background-color: #edf8f7 }
+
+.white { background-color: #fff }
+
+.header {
+    background-color: #c3e3e0;
+    height: 30px;
+}

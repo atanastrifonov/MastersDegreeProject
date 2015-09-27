@@ -3,7 +3,20 @@
      users view the same page when switching between English and Bulgarian. --%>
 <c:set var='view' value='/cart' scope='session' />
 
-<div id="singleColumn">
+<div id="content">
+    <div class="container">
+
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li><a href="#">Home</a>
+            </li>
+            <li>Shopping cart</li>
+        </ul>
+    </div>
+
+    <div class="col-md-9" id="basket">
+
+    <div class="box">
 
     <c:choose>
         <c:when test="${cart.numberOfItems > 1}">
@@ -47,17 +60,18 @@
 
         <%-- checkout widget --%>
         <c:if test="${!empty cart && cart.numberOfItems != 0}">
-            <a href="<c:url value='checkout'/>" class="bubble hMargin"><fmt:message key="proceedCheckout"/></a>
+            <a href="<c:url value='checkout'/>" class="btn btn-primary"><fmt:message key="proceedCheckout"/></a>
         </c:if>
     </div>
 
     <c:if test="${!empty cart && cart.numberOfItems != 0}">
-
+      <br />
       <h4 id="subtotal"><fmt:message key="subtotal"/>:
           <fmt:formatNumber type="currency" currencySymbol="&euro; " value="${cart.subtotal}"/>
       </h4>
+      
 
-      <table id="cartTable">
+      <table id="table" style="width:100%">
 
         <tr class="header">
             <th><fmt:message key="product"/></th>
@@ -99,6 +113,7 @@
                            style="margin:5px">
                     <input type="submit"
                            name="submit"
+                           class="btn btn-primary"
                            value="<fmt:message key='update'/>">
                 </form>
             </td>
@@ -109,4 +124,7 @@
       </table>
 
     </c:if>
+    </div>
+    </div>
+    </div>
 </div>
