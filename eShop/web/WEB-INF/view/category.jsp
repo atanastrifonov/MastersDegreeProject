@@ -19,7 +19,7 @@
             <div class="panel panel-default sidebar-menu">
 
                 <div class="panel-heading">
-                    <h3 class="panel-title">Categories</h3>
+                    <h3 class="panel-title"><fmt:message key="category.header"/></h3>
                 </div>
 
                 <div class="panel-body">
@@ -29,12 +29,12 @@
                             <c:choose>
                                 <c:when test="${category.name == selectedCategory.name}">
                                     <li class="active">
-                                        <a href="<c:url value='category?${category.id}'/>"><fmt:message key="${category.name}"/>  <span class="badge pull-right">123</span></a>
+                                        <a href="<c:url value='category?${category.id}'/>"><fmt:message key="${category.name}"/>  <span class="badge pull-right">4</span></a>
                                     </li>
                                 </c:when>
                                 <c:otherwise>
                                     <li>
-                                        <a href="<c:url value='category?${category.id}'/>"><fmt:message key="${category.name}"/> <span class="badge pull-right">42</span></a>
+                                        <a href="<c:url value='category?${category.id}'/>"><fmt:message key="${category.name}"/> <span class="badge pull-right">4</span></a>
                                     </li>
                                 </c:otherwise>
                             </c:choose>
@@ -82,9 +82,9 @@
                                 <img src="${initParam.productImagePath}${product.name}.png" alt="<fmt:message key='${product.name}'/>" class="img-responsive">
                             </a>
                             <div class="text">
-                                <h3><a href="#"><i><fmt:message key="${product.name}"/></i> <fmt:message key='${product.name}Description'/></a></h3>
+                                <h3><a href="#"><i><fmt:message key="${product.name}"/></i><br /> <fmt:message key='${product.name}Description'/></a></h3>
                                 <p class="price"><fmt:formatNumber type="currency" currencySymbol="&euro; " value="${product.price}"/></p>
-                                    <a href="#" class="btn btn-default">View detail</a>
+                                    
                                     <form action="<c:url value='addToCart'/>" method="post">
                                         <input type="hidden"
                                                name="productId"

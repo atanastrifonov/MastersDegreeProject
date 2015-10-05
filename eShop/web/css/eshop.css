@@ -21,3 +21,55 @@
     background-color: #c3e3e0;
     height: 30px;
 }
+
+/* checkout page styles */
+#checkoutTable {
+    width: 405px;
+    padding: 10px;
+    background-color: #f5eabe;
+    float: left;
+    border-radius: 4px;
+}
+
+#checkoutTable td {
+    vertical-align: top;
+    text-align: right;
+    margin: 5px;
+}
+
+.inputField { width: 190px }
+
+#infoBox { padding: 10px 25px 0 460px }
+
+#priceBox {
+    padding: 10px;
+    border: 1px solid #c3e3e0;
+    background-color: #c3e3e0;
+    border-radius: 4px;
+}
+
+#priceBox td {
+    text-align: right;
+    padding: 5px;
+}
+
+.checkoutPriceColumn {
+    width: 80px;
+    font-weight: bold;
+}
+
+.total { border-top: 1px solid #444 }
+
+.indent { margin-left: 6em }
+
+#singleColumn {
+    margin: 20px 30px;
+    text-align: left;
+}
+
+.error {
+    color: #c00;
+    font-style: italic;
+}
+
+.smallText { font-size: small }
